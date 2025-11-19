@@ -1,6 +1,5 @@
 package com.nip.public_issue.Service;
 
-import org.hibernate.validator.cfg.defs.EmailDef;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +66,9 @@ public IssueResponseDTO createIssue(CreateIssueDTO dto){
 }
 
 
+public Issue getIssueById(long id){
+    return issueRepo.getReferenceById(id);
+}
 
 
 

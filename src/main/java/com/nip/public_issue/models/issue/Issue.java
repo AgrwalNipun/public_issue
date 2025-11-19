@@ -20,23 +20,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-
 @Entity
-@Setter @Getter 
-@NoArgsConstructor @AllArgsConstructor
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Issue extends BaseEntity{
-    
-
-
+public class Issue extends BaseEntity {
 
     // @Column(nullable = false)
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
     private User reporter;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
@@ -46,17 +42,12 @@ public class Issue extends BaseEntity{
     private String location;
     private String imageTag;
 
-
-
-
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private Category issueCategory = Category.GENERAL;
 
-
-@Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Builder.Default
     private Status status = Status.PENDING;
-
 
 }

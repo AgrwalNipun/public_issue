@@ -15,29 +15,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
-
 @RequestMapping("/dept")
 @RestController
 public class DepartmentController {
-    
+
     @Autowired
     private DepartmentService departmentService;
 
     @PostMapping("/add")
     public ResponseEntity<Department> postMethodName(@RequestBody CreateDepartmentDTO entity) {
 
-        
-        return  ResponseEntity.ok(departmentService.createDepartment(entity));
+        return ResponseEntity.ok(departmentService.createDepartment(entity));
     }
-    
 
     @GetMapping("/all")
-    public ResponseEntity<List<Department>> getAllDepartment(
-
-    ) {
+    public ResponseEntity<List<Department>> getAllDepartment() {
         return ResponseEntity.ok(departmentService.getAllDepartment());
     }
-    
 
 }

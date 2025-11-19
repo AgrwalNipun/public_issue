@@ -11,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UpdateStatusDTO {
+    private long userId;
     private long id;
     private Status status;   
 }

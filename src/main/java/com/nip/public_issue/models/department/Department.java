@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.nip.public_issue.models.BaseEntity;
 import com.nip.public_issue.models.Category;
 import com.nip.public_issue.models.issue.Issue;
+import com.nip.public_issue.models.user.User;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -46,5 +47,12 @@ public class Department extends BaseEntity {
     @Builder.Default
     @JsonManagedReference
     private List<Issue> issues = new ArrayList<>();
+
+
+
+    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL)
+    @Builder.Default
+    @JsonManagedReference
+    private List<User> users = new ArrayList<>();
 
 }

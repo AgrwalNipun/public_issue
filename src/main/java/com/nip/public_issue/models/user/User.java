@@ -1,22 +1,23 @@
 package com.nip.public_issue.models.user;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.nip.public_issue.models.BaseEntity;
+import com.nip.public_issue.models.department.Department;
 import com.nip.public_issue.models.issue.Issue;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 @Getter
 @Setter
@@ -25,9 +26,6 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "users")
 public class User extends BaseEntity implements UserDetails {
-
-    
-
 
     @Column(nullable = false)
     private String name;
@@ -46,6 +44,12 @@ public class User extends BaseEntity implements UserDetails {
     @JsonManagedReference
     private List<Issue> issues = new ArrayList<>();
 
+    // Inside your User.java model
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
+    @JoinColumn(name = "department_id")
+    private Department department;
+
 
     // ---------- Spring Security boilerplate ----------
     @Override
@@ -55,17 +59,27 @@ public class User extends BaseEntity implements UserDetails {
     }
 
     @Override
-    public String getUsername() { return email; }
+    public String getUsername() {
+        return email;
+    }
 
     @Override
-    public boolean isAccountNonExpired() { return true; }
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
     @Override
-    public boolean isAccountNonLocked() { return true; }
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
     @Override
-    public boolean isCredentialsNonExpired() { return true; }
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
     @Override
-    public boolean isEnabled() { return true; }
+    public boolean isEnabled() {
+        return true;
+    }
 }
