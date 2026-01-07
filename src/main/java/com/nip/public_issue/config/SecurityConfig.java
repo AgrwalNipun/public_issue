@@ -18,15 +18,17 @@ public class SecurityConfig {
 
 @Bean
 public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http
-        .csrf(csrf -> csrf.disable())
-        .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll()
-        )
-        .cors(cors -> {})   // IMPORTANT for multipart
-        .sessionManagement(session -> 
-                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        );
+    // disable CSRF
+    http.csrf().disable();
+
+    // allow all requests
+    http.authorizeRequests().anyRequest().permitAll();
+
+    // enable CORS (important for multipart)
+    http.cors();
+
+    // stateless session management
+    http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
     return http.build();
 }
