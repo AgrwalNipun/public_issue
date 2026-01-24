@@ -43,7 +43,6 @@ public class IssueController {
         
         if(dept.getUsers().contains(userService.getUserById(userId))){
         return issueService.updateIssueStatus(statusDTO.getId(),statusDTO.getStatus());
-
         }
         else{
             throw new IllegalArgumentException("User is not eligible to update status");
