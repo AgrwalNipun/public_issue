@@ -1,0 +1,21 @@
+name: API Change Notifier
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: 
+
+jobs:
+  notify-api-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run API Notifier
+        uses: AgrwalNipun/api_change_notifier@main
+        with:
+          target-dir: ${{ github.workspace }}
+          version: 'v1.0.6'
