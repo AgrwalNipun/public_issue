@@ -17,5 +17,8 @@ jobs:
       - name: Run API Notifier
         uses: AgrwalNipun/api_change_notifier@main
         with:
-          target-dir: ${{ github.workspace }}
-          version: 'v1.0.7'
+          target-dir: ${{ github.workspace }} # Passes the root of your checked-out code
+          version: "v1.0.7" # Matches the tag of the Release where your 60MB JAR is uplo   aded
+          repoID: ${{ github.repository_id}}
+          commitID: ${{ github.sha }}
+          emails: "nipunagrawal500@gmail.com"
