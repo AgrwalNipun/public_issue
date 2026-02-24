@@ -87,4 +87,22 @@ public class EmailService {
             return "Error while sending mail!!!: " + e.getMessage();
         }
     }
+
+    public void sendHtmlMail(String to, String subject, String htmlBody) {
+    try {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper =
+                new MimeMessageHelper(message, true);
+
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setText(htmlBody, true); // true = HTML
+
+        javaMailSender.send(message);
+        System.out.println("*****MAIL SENT SUCCESSFULLY ****");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
 }

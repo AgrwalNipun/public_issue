@@ -28,9 +28,6 @@ public class UserService {
         }
     }
 
-
-
-
     public User createUser(CreateUserDTO userDTO) {
         // Implementation to create a new user
 
@@ -39,12 +36,15 @@ public class UserService {
         user.setEmail(userDTO.getEmail());
         user.setName(userDTO.getName());
         user.setPassword(userDTO.getPassword());
-        
-        if(userDTO.getRole()==Role.OFFICE&&userDTO.getDepartmentId()!=null){
+
+        if (userDTO.getRole() == Role.OFFICE && userDTO.getDepartmentId() != null) {
             Department dept = deptService.getDepartmentById(userDTO.getDepartmentId());
             user.setDepartment(dept);
         }
 
+        if (userDTO.getRole() != null) {
+            user.setRole(userDTO.getRole());
+        }
 
         User savedUser = userRepo.save(user);
         // System.out.println(savedUser.getDepartment().getName());

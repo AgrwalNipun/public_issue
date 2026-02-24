@@ -89,9 +89,23 @@
     </dependency>
     -->
 
+<!--ENV ACCESS -->
+    <dependency>
+    <groupId>me.paulschwarz</groupId>
+    <artifactId>spring-dotenv</artifactId>
+    <version>4.0.0</version>
+</dependency>
+
     <!-- ====================== -->
     <!--  JWT IMPLEMENTATION    -->
     <!-- ====================== -->
+
+<dependency>
+    <groupId>com.google.genai</groupId>
+    <artifactId>google-genai</artifactId>
+    <version>1.0.0</version>   <!-- or latest -->
+</dependency>
+
 
     <dependency>
         <groupId>io.jsonwebtoken</groupId>
