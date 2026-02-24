@@ -14,31 +14,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    
+
     @Autowired
     UserService service;
 
-
     @PostMapping("/add")
     public ResponseEntity<User> addUser(@RequestBody CreateUserDTO entity) {
-        
-
-
         User savedUser = service.createUser(entity);
         return ResponseEntity.ok(savedUser);
     }
-    
 
-  @GetMapping("/get")
-public ResponseEntity<User> getUser(@RequestParam Long id) {
-    System.out.println("Herreee with id"+id);
-    return ResponseEntity.ok(service.getUserById(id));
-}
-
+    @GetMapping("/get")
+    public ResponseEntity<User> getUser(@RequestParam Long id) {
+        System.out.println("Herreee with id" + id);
+        return ResponseEntity.ok(service.getUserById(id));
+    }
 
 }

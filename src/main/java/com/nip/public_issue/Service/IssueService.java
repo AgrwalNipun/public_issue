@@ -28,11 +28,16 @@ public class IssueService {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private GeminiService geminiService;
 
 public IssueResponseDTO createIssue(CreateIssueDTO dto){
 
     User reporter = userService.getUserById(dto.getReporterId());
     Department dept = deptService.getDepartmentById(dto.getDepartmentId());
+
+
+
 
     Issue issue = new Issue();
     issue.setReporter(reporter);
